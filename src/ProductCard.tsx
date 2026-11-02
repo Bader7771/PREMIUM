@@ -30,7 +30,7 @@ export function ProductCard({
             <FoodPhoto photoKey={photo} />
           ) : (
             <div className="recipe-pending">
-              <span aria-hidden="true">◡</span>
+              <Icon name="drinks" />
               <small>{p.name}</small>
               <p>
                 {p.id === "drink-2"
@@ -84,7 +84,7 @@ export function ProductCard({
                     : "Choisir ce produit"}
             </span>
             <span className="action-symbol" aria-hidden="true">
-              {expanded ? "−" : "+"}
+              <Icon name={expanded ? "minus" : "plus"} />
             </span>
           </button>
         )}

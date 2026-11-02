@@ -188,6 +188,7 @@ export function Configurator({
                     <input
                       type="radio"
                       name={`format-${instance}`}
+                      aria-label={f.name}
                       checked={c.format === f.id}
                       onChange={() => set("format", f.id)}
                     />
@@ -300,7 +301,7 @@ export function Configurator({
           onClick={() => onSave(c, quantity)}
         >
           {editing ? "Enregistrer les modifications" : "Ajouter au panier"}{" "}
-          <span>↗</span>
+          <Icon name="diagonal" />
         </button>
       </div>
     </div>
@@ -320,7 +321,7 @@ export function Quantity({
         disabled={value <= 1}
         onClick={() => onChange(value - 1)}
       >
-        −
+        <Icon name="minus" />
       </button>
       <output aria-label="Quantité">{value}</output>
       <button
@@ -328,7 +329,7 @@ export function Quantity({
         disabled={value >= 99}
         onClick={() => onChange(value + 1)}
       >
-        +
+        <Icon name="plus" />
       </button>
     </div>
   );

@@ -90,3 +90,41 @@ It checks the catalog at 320, 390, 834 and 1440 pixels, captures screenshots in 
 The original blue/cream/yellow identity is retained. Product cards use consistent 4:3 crops, larger text and clearer prices. Cheese board choices have a combined progress meter, a completion message and separate optional groups. Format choices use food photographs. Cart editing retains its exact line; the checkout steps show progress and move focus to headings/errors.
 
 Opening animations last 0.5–0.7 seconds with small overlapping staggers. Scroll reveals run once per mounted element using IntersectionObserver and Web Animations; content is visible without observation or animation support. Explicit expand/collapse uses short measured-height transitions and immediately makes closing controls inert. The cart uses a 260 ms entrance and 150 ms exit. Reduced motion disables opening/scroll/interaction motion; image space stays reserved and fonts use local system stacks. No animation runtime library was added.
+
+## Storefront pages and configuration
+
+React Router provides `/` (Accueil), `/menu` (complete catalog), `/contact`,
+and a useful catch-all page. Category deep links use `/menu?category=boards`
+(or `brunch`, `savory`, `sweet`, `extras`, `drinks`). Search uses `q` and works
+with category filters. The global cart stays mounted during navigation and
+continues to use the existing validated browser storage.
+
+`src/business.ts` holds optional verified phone, email, address, opening hours,
+social links and a map URL. Blank details are hidden. The contact form validates
+a draft locally; no request is sent, and the interface explicitly says so.
+Connect a real contact service before offering message submission.
+
+Products, prices, pack contents and customization constraints remain in
+`src/catalog.ts`; delivery settings remain in `src/scheduling.ts`. Existing
+unconfirmed rules and the composed brunch remain explicitly provisional.
+The ordering/payment adapter in `src/services.ts` is still a demonstration.
+Real order submission, payment, delivery rules/fees, and business details need
+confirmation/integration before launch. Photography provenance is in
+`PHOTOGRAPHY.md`; unknown drink recipes deliberately have no misleading photo.
+All interface icons come from Lucide React.
+
+### Nested URL hosting
+
+Vite development and preview servers provide SPA fallback. `public/_redirects`
+is copied to the production build for hosts supporting this format (including
+Cloudflare Pages and Netlify). Any other production host must rewrite unknown
+non-asset routes to `/index.html` with status 200, e.g. Nginx
+`try_files $uri $uri/ /index.html;`. Do not rewrite missing assets to HTML.
+The end-to-end verification server also applies this fallback and tests refresh
+on a direct category URL.
+
+Run `npm run build`, `npm test`, and `npm run test:e2e`. The browser regression
+checks representative widths from 320 to 1440 pixels, navigation, search,
+contact validation, food photos, customization limits, cross-page cart state,
+refresh persistence, checkout, Escape handling, and reduced motion. Screenshots
+are written to `qa-screenshots/` (ignored by git).

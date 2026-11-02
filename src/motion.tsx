@@ -48,7 +48,7 @@ export function useScrollReveal(
             animateSafely(
               el,
               [
-                { opacity: 0.18, transform: "translateY(16px)" },
+                { opacity: 0.18, transform: el.dataset.reveal === "image" ? "scale(.975)" : "translateY(16px)" },
                 { opacity: 1, transform: "translateY(0)" },
               ],
               {

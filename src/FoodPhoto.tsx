@@ -1,3 +1,4 @@
+import { Icon } from "./Icons";
 import { useState } from "react";
 import { photos, photoUrl } from "./photography";
 export function FoodPhoto({
@@ -23,7 +24,7 @@ export function FoodPhoto({
         role="img"
         aria-label={photo?.alt || "Photographie indisponible"}
       >
-        <span aria-hidden="true">✳</span>
+        <Icon name="sun" />
         <span>Le goût des bons moments.</span>
         <small>Photo momentanément indisponible</small>
       </div>
@@ -52,7 +53,9 @@ export function FoodPhoto({
 export function PhotoCredits() {
   return (
     <details className="photo-credits" id="credits">
-      <summary>Crédits photographiques ↗</summary>
+      <summary>
+        Crédits photographiques <Icon name="diagonal" />
+      </summary>
       <p>
         Photos de présentation. Les ingrédients, quantités et choix proposés
         sont ceux du menu.

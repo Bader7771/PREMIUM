@@ -52,12 +52,12 @@ export const brand = {
   provisional: true,
 };
 export const categories: { id: Category; name: string; icon: string }[] = [
-  { id: "brunch", name: "Packs brunch", icon: "☀" },
-  { id: "boards", name: "Cheese boards", icon: "◔" },
-  { id: "savory", name: "Salé", icon: "◒" },
-  { id: "sweet", name: "Sucré", icon: "♡" },
-  { id: "extras", name: "Suppléments", icon: "✳" },
-  { id: "drinks", name: "Boissons", icon: "◡" },
+  { id: "brunch", name: "Packs brunch", icon: "brunch" },
+  { id: "boards", name: "Cheese boards", icon: "boards" },
+  { id: "savory", name: "Salé", icon: "savory" },
+  { id: "sweet", name: "Sucré", icon: "sweet" },
+  { id: "extras", name: "Suppléments", icon: "extras" },
+  { id: "drinks", name: "Boissons", icon: "drinks" },
 ];
 export const sizes = [
   { id: "small", name: "Petit", price: 13000, count: 4 },

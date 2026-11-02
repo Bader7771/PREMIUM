@@ -1,3 +1,4 @@
+import { Icon } from "./Icons";
 import { useEffect, useRef, useState } from "react";
 import { catalog, price, money, summary, type CartLine } from "./catalog";
 import {
@@ -62,6 +63,7 @@ export function Checkout({
       {label}
       <input
         type={type}
+        aria-label={label}
         autoComplete={autoComplete}
         required={!["instructions", "notes"].includes(id)}
         value={c[id]}
@@ -111,7 +113,7 @@ export function Checkout({
         className="text-button"
         onClick={step ? () => setStep(step - 1) : onBack}
       >
-        ← {step ? "Étape précédente" : "Retour au panier"}
+        <Icon name="back" /> {step ? "Étape précédente" : "Retour au panier"}
       </button>
       <div
         className="checkout-steps"
@@ -125,7 +127,7 @@ export function Checkout({
             role="listitem"
             aria-current={i === step ? "step" : undefined}
           >
-            <b>{i < step ? "✓" : i + 1}</b>
+            <b>{i < step ? <Icon name="check" /> : i + 1}</b>
             {s}
           </span>
         ))}
@@ -237,7 +239,9 @@ export function Checkout({
           )}
           {field("instructions", "Instructions de livraison (facultatif)")}
           {field("notes", "Notes ou demandes spéciales (facultatif)")}
-          <button className="button blue full">Vérifier ma commande →</button>
+          <button className="button blue full">
+            Vérifier ma commande <Icon name="arrow" />
+          </button>
         </form>
       )}
       {step > 0 && (
@@ -294,12 +298,12 @@ export function Checkout({
           </div>
           {step === 1 ? (
             <button className="button blue full" onClick={advance}>
-              Continuer vers le paiement démo →
+              Continuer vers le paiement démo <Icon name="arrow" />
             </button>
           ) : (
             <>
               <div className="payment-demo">
-                <span>◇</span>
+                <Icon name="payment" />
                 <h3>Paiement de démonstration</h3>
                 <p>
                   Aucune carte bancaire requise. Cette simulation ne réserve pas
@@ -316,7 +320,8 @@ export function Checkout({
                 disabled={busy}
                 onClick={submit}
               >
-                {busy ? "Simulation en cours…" : "Simuler la confirmation"} →
+                {busy ? "Simulation en cours…" : "Simuler la confirmation"}{" "}
+                <Icon name="arrow" />
               </button>
             </>
           )}
